@@ -7,7 +7,7 @@ tulemused = []
 
 i = randint(3, 10)
 
-# Nimekirjade täitmine
+
 for b in range(i):
     while True:
         sportlane = input(f"Sisesta sportlase nimi ({i} osalejat): ").capitalize()
