@@ -33,7 +33,7 @@ print("\nMENÜÜ\n"
 
 try:
     while True:
-        valik = int(input("\nSisesta oma valik: "))
+        valik = int(input("Sisesta oma valik: "))
         if valik == 1:
             valik1(sportlased, tulemused)
         elif valik == 2:
