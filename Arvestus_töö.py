@@ -1,6 +1,6 @@
 from random import randint
 from module1 import *
-
+from module2 import *
 print("Võistlused algavad!!!")
 sportlased = []
 tulemused = []
@@ -22,7 +22,6 @@ for b in range(i):
     sportlased.append(sportlane)
     tulemused.append(tulemus)
 
-tabel(sportlased, tulemused)
 
 
 print("\nMENÜÜ\n"
