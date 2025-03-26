@@ -2,7 +2,7 @@ from random import randint
 
 # Funktsioon tulemuste tabeli kuvamiseks
 def tabel(sportlased, tulemused):
-    print("\nOsalejad : Tulemused")
+    print("Osalejad : Tulemused")
     for n in range(len(sportlased)):
         print(f"{sportlased[n]} : {tulemused[n]}")
 
@@ -48,6 +48,7 @@ def valik5(sportlased, tulemused):
     kogus = int(input("Sisesta halvimate tulemuste arv: "))
     sorted_results = sorted(zip(tulemused, sportlased))
     
-    print(f"\nTop {kogus} halvimat tulemust:")
+    print(f"Top {kogus} halvimat tulemust:")
     for tulemus, nimi in sorted_results[:kogus]:
         print(f"{nimi} : {tulemus}")
+
