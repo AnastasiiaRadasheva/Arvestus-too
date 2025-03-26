@@ -1,45 +1,53 @@
-import random
+from random import randint
 
-sportlased = []
-tulemused = []
-hüpped = []
+# Funktsioon tulemuste tabeli kuvamiseks
+def tabel(sportlased, tulemused):
+    print("\nOsalejad : Tulemused")
+    for n in range(len(sportlased)):
+        print(f"{sportlased[n]} : {tulemused[n]}")
 
-def lists() -> None:
-    """Genereerib sportlaste tulemused"""
-    while True:
-        inim = input("Sisesta sportlase nimi (või 'stopp' lõpetamiseks): ")
-        if inim.lower() == "stopp":
-            break
-        
-        score = [random.randint(1, 100) for _ in range(3)]
-        jumps = [random.randint(100, 500) for _ in range(3)]
-        best1 = max(score)
-        best2 = max(jumps)
-        
-        sportlased.append(inim)
-        sportlased.sort()
+# Funktsioon parimate n tulemuste kuvamiseks
+def valik1(sportlased, tulemused):
+    kogus = int(input("Sisesta parimate tulemuste arv: "))
+    sorted_results = sorted(zip(tulemused, sportlased), reverse=True)
+    
+    print(f"Top {kogus} parimat tulemust:")
+    for tulemus, nimi in sorted_results[:kogus]:
+        print(f"{nimi} : {tulemus}")
 
-        tulemused.append(best1)
-        tulemused.sort()
+# Funktsioon tulemuste sortimiseks kasvavas järjekorras
+def valik2(sportlased, tulemused):
+    sorted_results = sorted(zip(tulemused, sportlased))
+    
+    print("\nTulemused kasvavas järjekorras:")
+    for i, (tulemus, nimi) in enumerate(sorted_results, 1):
+        print(f"{i}. {nimi} : {tulemus}")
 
-        hüpped.append(best2)
-        hüpped.sort()
-
-        print(f"{inim} tulemus on {best1} ja hüppab {best2} sentimeetrit")
-
-def best() -> None:
-    """Väljasta parima sportlase nimi ja tulemus"""
-    if tulemused:
-        max_index = tulemused.index(max(tulemused))
-        print(f"Parim sportlane on {sportlased[max_index]} tulemusega {tulemused[max_index]} ja hüppe pikkusega {hüpped[max_index]} sentimeetrit")
+# Funktsioon sportlase tulemuse leidmiseks nime järgi
+def valik3(sportlased, tulemused):
+    name = input("Sisesta sportlase nimi: ").capitalize()
+    if name in sportlased:
+        index = sportlased.index(name)
+        print(f"{name} : {tulemused[index]}")
     else:
-        print("Tulemusi ei ole!")
+        print("Sportlast ei leitud.")
 
-def main() -> None:
-    """Käivita programm"""
-    lists()
-    print("Kõik sportlased:", sportlased)
-    print("Kõik tulemused:", tulemused)
-    print("Kõik hüpped:", hüpped)
-    best()
+# Funktsioon diskvalifitseerimiseks (tulemused alla 40)
+def valik4(sportlased, tulemused):
+    """Eemaldab sportlased, kelle tulemus on alla 40."""
+    for i in range(len(tulemused) - 1, -1, -1):  # Проходим список с конца, чтобы удалять элементы
+        if tulemused[i] < 40:
+            del sportlased[i]
+            del tulemused[i]
 
+    print("\nUuendatud nimekiri pärast diskvalifitseerimist:")
+    tabel(sportlased, tulemused)
+
+# Funktsioon halvimate n tulemuste kuvamiseks
+def valik5(sportlased, tulemused):
+    kogus = int(input("Sisesta halvimate tulemuste arv: "))
+    sorted_results = sorted(zip(tulemused, sportlased))
+    
+    print(f"\nTop {kogus} halvimat tulemust:")
+    for tulemus, nimi in sorted_results[:kogus]:
+        print(f"{nimi} : {tulemus}")
